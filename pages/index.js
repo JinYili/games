@@ -1,6 +1,6 @@
 import { server } from "../config";
 import GameList from "../components/GameList";
-
+import { games } from "../data";
 export default function Home({ games }) {
   return (
     <div>
@@ -10,8 +10,8 @@ export default function Home({ games }) {
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch(`${server}/api/games`);
-  const games = await res.json();
+  //const res = await fetch(`${server}/api/games`);
+  //const games = await res.json();
 
   return {
     props: {

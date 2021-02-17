@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Meta from "../../../components/Meta";
-
+import { games } from "../../../data";
 const game = ({ game }) => {
   // const router = useRouter()
   // const { id } = router.query
@@ -26,9 +26,9 @@ const game = ({ game }) => {
 };
 
 export const getStaticProps = async (context) => {
-  const res = await fetch(`${server}/api/games/${context.params.id}`);
-
-  const game = await res.json();
+  //const res = await fetch(`${server}/api/games/${context.params.id}`);
+  //const game = await res.json();
+  const game = games.find((g) => g.id === context.params.id);
 
   return {
     props: {
@@ -38,9 +38,9 @@ export const getStaticProps = async (context) => {
 };
 
 export const getStaticPaths = async () => {
-  const res = await fetch(`${server}/api/games`);
+  //const res = await fetch(`${server}/api/games`);
 
-  const games = await res.json();
+  //  const games = await res.json();
 
   const ids = games.map((game) => game.id);
   const paths = ids.map((id) => ({ params: { id: id.toString() } }));
